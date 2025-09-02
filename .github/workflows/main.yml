@@ -4,9 +4,11 @@ on: [push]
 
 jobs:
   test:
-    runs-on: actions/checkout@v3
+    runs-on: ubuntu-latest
 
     steps:
+     - name: "vm"
+       uses: actions/checkout@v3
      - name: "setup node"
        uses: actions/setup-node@v3
 
@@ -14,7 +16,7 @@ jobs:
        run: npm install
 
      - name: "tests"
-       run: npm test
+       run: npm run test
 
      - name: "msg"
        run: echo "test successfull!"
