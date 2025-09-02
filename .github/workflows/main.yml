@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   test:
-    uses: actions/checkout@v3
+    runs-on: actions/checkout@v3
 
     steps:
      - name: "setup node"
