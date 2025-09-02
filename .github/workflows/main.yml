@@ -3,8 +3,7 @@ name: "github actions"
 on: [push]
 
 jobs:
-
-  test:
+   test:
   - name: "vm"
     uses: actions/checkout@v3
 
