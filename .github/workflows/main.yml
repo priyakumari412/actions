@@ -16,7 +16,7 @@ test:
        run: npm install
 
      - name: "tests"
-       run: npm test
+       run: npm run test
 
      - name: "msg"
        run: echo "test successfull!"
