@@ -45,7 +45,7 @@ jobs:
        run: echo "build successfull!"
 
      - name: "upload dist"
-       run: actions/upload-artifact@v3
+       uses: actions/upload-artifact@v3
        with:
         path: dist
 
@@ -55,5 +55,5 @@ jobs:
 
     steps:
      - name: "download dist"
-       run: actions/download-artifact@v3
+       uses: actions/download-artifact@v3
 
