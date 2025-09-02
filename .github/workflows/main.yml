@@ -1,13 +1,17 @@
 name: "github actions"
 
-on: [push]
+on: 
+  - push: 
+    branches: main
+  
+  - workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-     - name: "vm"
+     - name: "get code"
        uses: actions/checkout@v3
      - name: "setup node"
        uses: actions/setup-node@v3
@@ -20,3 +24,34 @@ jobs:
 
      - name: "msg"
        run: echo "test successfull!"
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: "get code"
+       uses: actions/checkout@v3
+     - name: "setup node"
+       uses: actions/setup-node@v3
+
+     - name: "install modules"
+       run: npm install
+
+     - name: "build"
+       run: npm run build
+
+     - name: "msg"
+       run: echo "build successfull!"
+
+     - name: "upload dist"
+       run: actions/upload@v3
+
+  deploy: 
+     needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: "download dist"
+       run: actions/download@v3
+
