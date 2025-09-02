@@ -1,26 +1,22 @@
-name: Run Node.js Tests
+name: "github actions"
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+
+test:
+  - name: "vm"
+    uses: actions/checkout@v3
 
     steps:
-    - name: ⬇️ Checkout code
-      uses: actions/checkout@v3
+     - name: "setup node"
+       uses: actions/setup-node@v3
 
-    - name: 🟢 Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18  # You can change to 16 or whatever you're using
+     - name: "install modules"
+       run: npm install
 
-    - name: 📦 Install dependencies
-      run: npm install
+     - name: "tests"
+       run: npm test
 
-    - name: 🧪 Run tests
-      run: npm test
+     - name: "msg"
+       run: echo "test successfull!"
